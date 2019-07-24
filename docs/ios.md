@@ -4,13 +4,11 @@
  * @Version:
  * @Date: 2019-07-15 19:08:18
  * @LastEditors: yunshan.wang
- * @LastEditTime: 2019-07-22 11:02:27
+ * @LastEditTime: 2019-07-24 18:55:58
  -->
 
 
 # SigMob平台 iOS SDK接入说明
-
-[[TOC]]
 
 ## 1 iOS SDK接入
 ### 1.1 iOS SDK导入framework
