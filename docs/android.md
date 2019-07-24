@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Author: yunshan.wang
+ * @Version: 
+ * @Date: 2019-07-24 17:45:54
+ * @LastEditors: yunshan.wang
+ * @LastEditTime: 2019-07-24 18:53:12
+ -->
 # WindSDK 集成文档
 
 * __WindSDK支持最低系统版本：Android SDK Level 14+__
@@ -5,7 +13,7 @@
 * __Android Support V4 23版本以上__
 
 
-### SDK版本以下差异说明
+## SDK版本以下差异说明
 
 
 
@@ -39,7 +47,7 @@ provider定义|android:authorities="${applicationId}.provider"| android:authorit
 视频广告准备检查接口|isReady()|isReady(String placementId)
 
 
-### 1、准备工作
+## 1、准备工作
 
 * 解压我们提供的压缩包，把WindAd*.Jar放入app的libs工程中。
 
@@ -48,8 +56,8 @@ provider定义|android:authorities="${applicationId}.provider"| android:authorit
 * 3 到sigmob流量变现管理平台配置app各渠道的参数（目前代为操作，且仅支持Sigmob渠道）。
 
 
-### 2、 集成步骤
-####  加入 Android Support V4 依赖支持库
+## 2、 集成步骤
+###  加入 Android Support V4 依赖支持库
 ```
 dependencies {
 
@@ -62,7 +70,7 @@ dependencies {
 }
 ```
 
-#### 添加provider
+### 添加provider
 * 在项目结构下的res目录下添加一个xml文件夹，再新建一个sigmob_provider_paths.xml的文件，文件内容如下
 
 ```
@@ -71,7 +79,7 @@ dependencies {
     <external-path name="sigmob_download_path" path="SIGTDOWNLOAD" />
 </paths>
 ```
-#### 更新 AndroidManifest.xml
+### 更新 AndroidManifest.xml
 
 ```
 <manifest>
@@ -120,7 +128,7 @@ dependencies {
 
 ```
 
-#### 混淆配置
+### 混淆配置
 ```
 
 # android.support.v4
@@ -139,9 +147,9 @@ dependencies {
 
 ```
 
-### 3、 集成示例代码
+## 3、 集成示例代码
 
-#### SDK初始化及GDPR授权支持（仅用于有GDPR需求的开发者）
+### SDK初始化及GDPR授权支持（仅用于有GDPR需求的开发者）
 ```
         WindAds ads = WindAds.sharedAds();
 
@@ -164,8 +172,8 @@ dependencies {
 
 
 
-### 激励视频集成相关
-#### 设置监听回调
+## 激励视频集成相关
+### 设置监听回调
 ```
         WindRewardedVideoAd windRewardedVideoAd = WindRewardedVideoAd.sharedInstance();
 
@@ -226,7 +234,7 @@ dependencies {
         });
 ```
 
-#### 激励视频广告加载
+### 激励视频广告加载
 ```
        WindRewardedVideoAd windRewardedVideoAd = WindRewardedVideoAd.sharedInstance();
 
@@ -236,7 +244,7 @@ dependencies {
 
 ```
 
-#### 激励视频广告播放
+### 激励视频广告播放
 ```
         WindRewardedVideoAd windRewardedVideoAd = WindRewardedVideoAd.sharedInstance();
 
@@ -254,11 +262,11 @@ dependencies {
         }
 ```
 
-### 开屏广告集成相关
+## 开屏广告集成相关
 
 **目前开屏广告仅支持竖屏**
 
-#### 设置监听回调
+### 设置监听回调
 ```
 
     // 开屏广告开始展示
@@ -291,7 +299,7 @@ dependencies {
 ```
 
 
-#### 开屏播放接口
+### 开屏播放接口
 * 此方式自适应广告展示大小，自带LOGO样式展示APP信息，无需开发者处理底部LOGO内容
 
 ```
