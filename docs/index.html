@@ -4,7 +4,7 @@
  * @Version:
  * @Date: 2019-07-22 16:42:23
  * @LastEditors: yunshan.wang
- * @LastEditTime: 2019-07-25 15:15:55
+ * @LastEditTime: 2019-07-25 16:15:31
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -23,12 +23,13 @@
       name: 'Sigmob SDK',  // 侧边栏标题名称
       loadSidebar: true,   // 是否加载侧边栏
       subMaxLevel: 3,      // 菜单生成等级,跟# 号数量相对于
-      remoteMarkdown: {    // 远程链接加载插件 
-        tag: 'remoteMarkdownUrl',
-      },
+      search: {  // 全局搜索配置
+        placeholder: '搜索'
+      }
+     
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
-  <script src="//unpkg.com/docsify-remote-markdown/dist/docsify-remote-markdown.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
 </body>
 </html>
