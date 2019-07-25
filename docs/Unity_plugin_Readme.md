@@ -4,22 +4,22 @@
  * @Version: 
  * @Date: 2019-07-25 12:07:06
  * @LastEditors: yunshan.wang
- * @LastEditTime: 2019-07-25 12:09:59
+ * @LastEditTime: 2019-07-25 14:57:14
  -->
 # Sigmob SDK - Unity 入门指南
 
 
-### 使用 Sigmob Unity 插件设置 Unity 项目
+## 使用 Sigmob Unity 插件设置 Unity 项目
 
-#### 将 Sigmob Unity 插件添加到 Unity 项目中
+### 将 Sigmob Unity 插件添加到 Unity 项目中
 在 Unity 中打开您的项目，双击下载的 Sigmob_unity_plugin.unitypackage 文件以将 Sigmob Unity 插件添加到您的应用程序。当“导入 Unity 程序包”窗口打开时，点击“全部”即可选择全部，然后导入
 
-#### 在构建设置中选择面向的正确平台
+### 在构建设置中选择面向的正确平台
 为避免后续步骤中的编译错误，请确保项目的“构建设置”(cmd + Shift + B) 选择面向的是 iOS 或 Android 平台。
 
 
 
-### Android 添加 AndroidManifest.xml 
+## Android 添加 AndroidManifest.xml 
 
 ```xml
 
@@ -53,7 +53,7 @@
 
 ```
 
-### provider_paths 定义
+## provider_paths 定义
 ```xml
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 这个下载路径不可以修改，必须是SIGTDOWNLOAD -->
@@ -61,7 +61,7 @@
 </paths>
 ```
 
-### iOS添加相关依赖库
+## iOS添加相关依赖库
 > 可在unity build时写脚本自动配置iOS工程，示例代码如下(仅供参考)：
 
 ```C#
@@ -116,21 +116,21 @@ public class XcodeProjectUpdater {
 }
 ```
 
-#### 1.1 申请应用的AppID和PlacementId
+### 1.1 申请应用的AppID和PlacementId
 请向Sigmob平台申请AppId和广告位PlacementId
 
-#### 1.2 工程设置导入framework
+### 1.2 工程设置导入framework
 开发者只需将WindSDK.framework文件拖入工程即可。作为聚合SDK,我们为每个渠道SDK提供了一个.a静态库，如果需要使用其它渠道的SDK,那么只需要将对应渠道的SDK和.a静态库文件拖入工程即可。
 
-#### 1.3 Xcode编译选项设置
+### 1.3 Xcode编译选项设置
 
-##### 1.3.1 添加“ObjC”链接器标记
+#### 1.3.1 添加“ObjC”链接器标记
 在Xcode中选择项目的Targets->Build Settings，配置Other Link Flags 增加 **-ObjC**。
 
 ##### 1.3.2 删除iOS状态栏
 尽管这不是必需的步骤，但我们建议采取该步骤以确保 WindSDK 的广告互动和演示可以顺利进行。如要删除状态栏，请打开 Info.plist， 添加**View controller-based status bar appearance**，并将其设置为 NO。
 
-##### 1.3.3 添加HTTP权限
+#### 1.3.3 添加HTTP权限
 工程info.plist文件设置，点击右边的information Property List后边的 "+" 展开
 添加 App Transport Security Settings，先点击左侧展开箭头，再点右侧加号，Allow Arbitrary Loads 选项自动加入，修改值为 YES。 SDK API 已经全部支持HTTPS，但是广告主素材存在非HTTPS情况。
 
@@ -141,16 +141,16 @@ public class XcodeProjectUpdater {
          <true/>
     </dict>
 ```
-##### 1.3.4 添加定位权限
+#### 1.3.4 添加定位权限
 工程info.plist文件设置，点击右边的information Property List后边的 "+" 展开
 添加Privacy - Location When In Use Usage Description。
 
-##### 1.3.5 运行环境配置
+#### 1.3.5 运行环境配置
 + 支持系统 iOS 7.X 及以上;
 + SDK编译环境 Xcode 9.0+, Base SDK 11.0;
 + 支持架构：i386, x86-64, armv7, armv7s, arm64
 
-##### 1.3.6 添加依赖库
+#### 1.3.6 添加依赖库
 ```objc
 libz.tbd
 libc++.tbd
@@ -183,7 +183,7 @@ SystemConfiguration.framework
 >如果您将iOS6作为部署目标，请将UIKit.framework、Foundation.framework、WindSDK.framework设置为**options**。
 >由于AppLovinSDK.framework最低至此iOS9，若您最低至此版本小于iOS9，请将AppLovinAdapter.a和AppLovinSDK.framework设置为**options**
 
-### unity插件初始化
+## unity插件初始化
 
 ```C#
 //添加命名空间
@@ -208,7 +208,7 @@ adVertisement = WindRewardVideoAdvertisement.Builder(request);
 
 
 
-### 自定义delegate回调
+## 自定义delegate回调
 ```c#
 //ad server返回广告
 [MonoPInvokeCallback(typeof(WindRewardVideoAdvertisement.OnAdServerDidSuccess_Delegate))]
@@ -267,7 +267,7 @@ private  void OnAdErrorCallback(string placementId, Error error)
 }
 ```
 
-### 添加监听
+## 添加监听
 
 ```C#
 //设置广告填充成功监听
@@ -292,14 +292,14 @@ adVertisement.SetAdPlayFailedListener (OnAdPlayErrorCallback);
 ```
 
 
-### 加载广告
+## 加载广告
 
 ```C#
 //温馨提示：在加载广告前确保已注册监听
 //加载广告
 adVertisement.LoadRequest();
 ```
-### 播放广告
+## 播放广告
 
 ```C#
 //温馨提示：在播放广告前请使用Ready接口检查广告状态
@@ -309,7 +309,7 @@ if (adVertisement.Ready ()) {
 }
 ```
 
-### 广告状态检查
+## 广告状态检查
 
 ```C#
 //广告状态检查
