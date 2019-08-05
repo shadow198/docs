@@ -4,8 +4,11 @@
  * @Version:
  * @Date: 2019-07-15 19:08:18
  * @LastEditors: yunshan.wang
- * @LastEditTime: 2019-07-24 18:55:58
+ * @LastEditTime: 2019-07-31 11:36:48
  -->
+
+<!-- 远程加载, 前面标签不换,替换后面链接即可 -->
+<!-- [remoteMarkdownUrl](https://raw.githubusercontent.com/docsifyjs/docsify/develop/README.md) -->
 
 
 # SigMob平台 iOS SDK接入说明

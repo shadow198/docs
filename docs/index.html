@@ -4,7 +4,7 @@
  * @Version:
  * @Date: 2019-07-22 16:42:23
  * @LastEditors: yunshan.wang
- * @LastEditTime: 2019-07-25 18:04:32
+ * @LastEditTime: 2019-07-31 11:38:26
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -26,11 +26,15 @@
       search: {  // 全局搜索配置
         placeholder: '搜索'
       },
-      themeColor: '#EF861D' // 主题色
+      themeColor: '#EF861D', // 主题色
+      remoteMarkdown: {  // 远程加载配置
+        tag: 'remoteMarkdownUrl',
+      },
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
-  <script src="//unpkg.com/docsify-copy-code"></script>j
+  <script src="//unpkg.com/docsify-copy-code"></script>
+  <script src="//unpkg.com/docsify-remote-markdown/dist/docsify-remote-markdown.min.js"></script>
 </body>
 </html>
