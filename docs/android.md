@@ -4,8 +4,33 @@
  * @Version: 
  * @Date: 2019-07-24 17:45:54
  * @LastEditors: yunshan.wang
- * @LastEditTime: 2019-07-24 18:53:12
+ * @LastEditTime: 2019-08-05 18:47:18
  -->
+<!-- vscode-markdown-toc -->
+* [1. SDK版本以下差异说明](#SDK)
+* [2. 准备工作](#)
+* [3. 集成步骤](#-1)
+    * [3.1 加入 Android Support V4 依赖支持库](#AndroidSupportV4)
+    * [3.2 添加provider](#provider)
+    * [3.3 更新 AndroidManifest.xml](#AndroidManifest.xml)
+    * [3.4 混淆配置](#-1)
+* [4 集成示例代码](#-1)
+    * [4.1 SDK初始化及GDPR授权支持（仅用于有GDPR需求的开发者）](#SDKGDPRGDPR)
+    * [4.2 激励视频集成相关](#-1)
+        * [4.2.1 设置监听回调](#-1)
+        * [4.2.2 激励视频广告加载](#-1)
+        * [4.2.3 激励视频广告播放](#-1)
+    * [4.3 开屏广告集成相关](#-1)
+        * [4.3.1 设置监听回调](#-1)
+        * [4.3.2 开屏播放接口](#-1)
+* [5. WindAdError错误定义](#WindAdError)
+
+<!-- vscode-markdown-toc-config
+    numbering=false
+    autoSave=true
+    /vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
 # WindSDK 集成文档
 
 * __WindSDK支持最低系统版本：Android SDK Level 14+__
@@ -13,7 +38,7 @@
 * __Android Support V4 23版本以上__
 
 
-## SDK版本以下差异说明
+## <a name='SDK'></a>1. SDK版本以下差异说明
 
 
 
@@ -47,17 +72,17 @@ provider定义|android:authorities="${applicationId}.provider"| android:authorit
 视频广告准备检查接口|isReady()|isReady(String placementId)
 
 
-## 1、准备工作
+## <a name=''></a>2. 准备工作
 
-* 解压我们提供的压缩包，把WindAd*.Jar放入app的libs工程中。
+* 1 解压我们提供的压缩包，把WindAd*.Jar放入app的libs工程中。
 
-* 到需要接入的渠道平台申请对应的appId、appKey、 placementId（先找接口商务提供）。
+* 2 到需要接入的渠道平台申请对应的appId、appKey、 placementId（先找接口商务提供）。
 
 * 3 到sigmob流量变现管理平台配置app各渠道的参数（目前代为操作，且仅支持Sigmob渠道）。
 
 
-## 2、 集成步骤
-###  加入 Android Support V4 依赖支持库
+## <a name='-1'></a>3. 集成步骤
+### <a name='AndroidSupportV4'></a>3.1 加入 Android Support V4 依赖支持库
 ```
 dependencies {
 
@@ -70,7 +95,7 @@ dependencies {
 }
 ```
 
-### 添加provider
+### <a name='provider'></a>3.2 添加provider
 * 在项目结构下的res目录下添加一个xml文件夹，再新建一个sigmob_provider_paths.xml的文件，文件内容如下
 
 ```
@@ -79,7 +104,7 @@ dependencies {
     <external-path name="sigmob_download_path" path="SIGTDOWNLOAD" />
 </paths>
 ```
-### 更新 AndroidManifest.xml
+### <a name='AndroidManifest.xml'></a>3.3 更新 AndroidManifest.xml
 
 ```
 <manifest>
@@ -94,7 +119,7 @@ dependencies {
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />    <!-- 如果需要精确定位的话请加上此权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
 
@@ -128,7 +153,7 @@ dependencies {
 
 ```
 
-### 混淆配置
+### <a name='-1'></a>3.4 混淆配置
 ```
 
 # android.support.v4
@@ -147,9 +172,9 @@ dependencies {
 
 ```
 
-## 3、 集成示例代码
+## <a name='-1'></a>4 集成示例代码
 
-### SDK初始化及GDPR授权支持（仅用于有GDPR需求的开发者）
+### <a name='SDKGDPRGDPR'></a>4.1 SDK初始化及GDPR授权支持（仅用于有GDPR需求的开发者）
 ```
         WindAds ads = WindAds.sharedAds();
 
@@ -172,8 +197,8 @@ dependencies {
 
 
 
-## 激励视频集成相关
-### 设置监听回调
+### <a name='-1'></a>4.2 激励视频集成相关
+#### <a name='-1'></a>4.2.1 设置监听回调
 ```
         WindRewardedVideoAd windRewardedVideoAd = WindRewardedVideoAd.sharedInstance();
 
@@ -234,7 +259,7 @@ dependencies {
         });
 ```
 
-### 激励视频广告加载
+#### <a name='-1'></a>4.2.2 激励视频广告加载
 ```
        WindRewardedVideoAd windRewardedVideoAd = WindRewardedVideoAd.sharedInstance();
 
@@ -244,7 +269,7 @@ dependencies {
 
 ```
 
-### 激励视频广告播放
+#### <a name='-1'></a>4.2.3 激励视频广告播放
 ```
         WindRewardedVideoAd windRewardedVideoAd = WindRewardedVideoAd.sharedInstance();
 
@@ -262,11 +287,11 @@ dependencies {
         }
 ```
 
-## 开屏广告集成相关
+### <a name='-1'></a>4.3 开屏广告集成相关
 
 **目前开屏广告仅支持竖屏**
 
-### 设置监听回调
+#### <a name='-1'></a>4.3.1 设置监听回调
 ```
 
     // 开屏广告开始展示
@@ -299,7 +324,7 @@ dependencies {
 ```
 
 
-### 开屏播放接口
+#### <a name='-1'></a>4.3.2 开屏播放接口
 * 此方式自适应广告展示大小，自带LOGO样式展示APP信息，无需开发者处理底部LOGO内容
 
 ```
@@ -336,7 +361,7 @@ WindSplashAD mWindSplashAD =  new WindSplashAD(activity,adContainer,splashAdRequ
 
 ```
 
-<a name="#xr1">WindAdError错误定义</a>
+## <a name='WindAdError'></a>5. WindAdError错误定义
 ```
             // 请求的app已经关闭广告服务
             ERROR_REQUEST_APP_IS_CLOSED(500420,"请求的app已经关闭广告服务"),
@@ -376,32 +401,41 @@ WindSplashAD mWindSplashAD =  new WindSplashAD(activity,adContainer,splashAdRequ
 
             // dsp无填充错误码 no ad match
             RTB_SIG_DSP_NO_ADS_ERROR(200000,"广告无填充"),
-
+            
             //网络出错
             ERROR_SIGMOB_NETWORK(600100,"网络错误"),
-
+            
             //请求出错
             ERROR_SIGMOB_REQUEST(600101,"广告请求出错"),
-
-
+            
             //为找到该渠道的适配器
             ERROR_SIGMOB_NOT_FOUD_ADAPTER(600102,"为找到该渠道的适配器"),
-
+            
             //配置的策略为空
             ERROR_SIGMOB_STRATEGY_EMPTY(600103,"配置的策略为空"),
-
+            
             //文件下载错误
             ERROR_SIGMOB_FILE_DOWNLOAD(600104,"文件下载错误"),
-
+            
             //下载广告超时
             ERROR_SIGMOB_AD_TIME_OUT(600105,"下载广告超时"),
-
+            
+            //GDRP条款拒绝
+            ERROR_SIGMOB_GDPR_DENIED(600106,"User GDPR Consent Status is denied"),
+            
+            //加载到数据库失败
+            ERROR_SIGMOB_AD_DB_INSERT(600107,"插入数据库失败"),
+            
             //SDK未初始化
             ERROR_SIGMOB_NOT_INIT(600900,"SDK未初始化"),
+            
             //广告位为空
-            ERROR_SIGMOB_PLACEMENTID_EMPTY(600901,"广告位为空"),
+            ERROR_SI
+            GMOB_PLACEMENTID_EMPTY(600901,"广告位为空"),
+            
             //策略请求失败
             ERROR_SIGMOB_STRATEGY(600902,"策略请求失败"),
+            
             //安装失败
             ERROR_SIGMOB_INSTALL_FAIL(600903,"安装失败"),
 
